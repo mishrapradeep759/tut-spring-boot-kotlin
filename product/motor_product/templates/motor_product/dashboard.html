@@ -1,0 +1,62 @@
+<div class="profile-window">
+    <div class="profile-card">
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <p><strong>Error: </strong> {{ form.errors }}</p>
+            </div>
+        {% endif %}
+        <form action="" id="uploadForm" method="post" class="form-horizontal" enctype="multipart/form-data" role="form">
+            {% csrf_token %}
+            {{form}}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+        </form>
+<!--        {% if file %}-->
+<!--            {% for f in file %}-->
+<!--                <p>{{f}}</p>-->
+<!--            {% endfor %}-->
+<!--        {% endif %}-->
+    </div>
+</div>
+
+<!---->
+<!---->
+{% if file %}
+    <div class="tab-content" id="myTabContent">
+        <table  class="table table-bordered table-condensed table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">MANUFACTURER</th>
+                    <th scope="col" class="text-center">MODEL_VARIANT</th>
+                    <th scope="col" class="text-center">CHOICES</th>
+                    <th scope="col" class="text-center">MODELCODE</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for f in file %}
+                <tr>
+
+                    <td align="center" width="400px">
+                        {{f.MANUFACTURER}}
+                    </td>
+                    <td align="center" width="400px">
+                        {{f.MODEL}}
+                    </td>
+                     <td align="center" width="400px">
+
+                            <select id="cars" name="cars">
+                                {% for i in f.matches %}
+                                    <option value="{{i.model_variant}}">{{i.model_variant}}</option>
+                                {% endfor %}
+                          </select>
+                    </td>
+                    <td align="center" width="400px">
+                        {{f.MODELCODE}}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

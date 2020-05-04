@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+mp3/
+*.mp3
+*mpeg
+db.sqlite3
+.idea/
+*.log
