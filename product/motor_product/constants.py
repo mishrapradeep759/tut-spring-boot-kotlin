@@ -166,6 +166,11 @@ class Constants:
             ("MADAM", "Madam"),
         )
 
+    class Vehicle:
+        MAKE = "MANUFACTURER"
+        MODEL = "MODEL"
+        VARIANT = "VARIANT"
+
 # TODO: Categorize below constants
 
 POLICY_EXPIRED = "POLICY_EXPIRED"
@@ -173,7 +178,4 @@ INSPECTION_EXPIRED = "INSPECTION_EXPIRED"
 POLICY_HAS_EXPIRED = "POLICY HAS EXPIRED"
 INSPECTION_IS_REQUIRED = "INSPECTION IS REQUIRED"
 
-MAKE = "MANUFACTURER"
-MODEL = "MODEL"
-VARIANT = "VARIANT"
 

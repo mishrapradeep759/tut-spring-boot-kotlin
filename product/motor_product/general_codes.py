@@ -1,14 +1,17 @@
 import csv
 import re
+import os
 from fuzzywuzzy import fuzz
 
 
-from motor_product import parser_utils
-from motor_product import constants
+from motor_product.constants import Constants
 
 INSURER_SLUG = ""
-VEHICLE_TYPE = "fourwheeler"
-local_path = 'C:\\working\\InsData\\Royal_Car_To_Upload_20190228.xlsx'
+VEHICLE_TYPE = Constants.VehicleType.FOURWHEELER
+FILE_TO_UPLOAD = "Car_To_Upload.xlsx"
+
+# TODO: """this is just for testing purpose. Once done need to correct with absolute/relative path"""
+local_path = os.path.join('C:\\working\\python\\projects\\tut-spring-boot-kotlin\\product', FILE_TO_UPLOAD)
 
 
 def clean_string(str):
@@ -75,9 +78,9 @@ def map_vehicles_with_master(raw_data):
     """
     vehicles = []
     for data in raw_data:
-        insurer_vehicle_make = clean_string(data.get(constants.MAKE, ""))
-        insurer_vehicle_model = clean_string(data.get(constants.MODEL, ""))
-        insurer_vehicle_variant = clean_string(data.get(constants.VARIANT, ""))
+        insurer_vehicle_make = clean_string(data.get(Constants.Vehicle.MAKE, ""))
+        insurer_vehicle_model = clean_string(data.get(Constants.Vehicle.MODEL, ""))
+        insurer_vehicle_variant = clean_string(data.get(Constants.Vehicle.VARIANT, ""))
 
         master_model_variants = vehicle_master.get(insurer_vehicle_make)
         if master_model_variants and insurer_vehicle_model and insurer_vehicle_variant:
